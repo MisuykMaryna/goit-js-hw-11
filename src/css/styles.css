@@ -1,3 +1,9 @@
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 .search-form {
     display: flex;
     justify-content: center;
@@ -156,4 +162,8 @@ input {
 
 .info-item:not(:first-child) {
     margin-left: 5px;
+}
+
+.hidden {
+    display: none;
 }

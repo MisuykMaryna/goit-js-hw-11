@@ -1,6 +1,6 @@
 import './css/styles.css';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 import Notiflix from 'notiflix';
 import { fetchImages } from './api';
 import { renderGallery } from './render-gallery';
@@ -29,20 +29,20 @@ async function onSearch(e) {
   e.preventDefault();
   searchQuery = e.currentTarget.elements.searchQuery.value.trim();
   page = 1;
+  buttonHidden();
+  lightbox.refresh();
+  clearAll();
   if (searchQuery === '') {
-    clearAll();
-    buttonHidden();
     return;
   }
     
   const response = await fetchImages(searchQuery, page, perPage);
-  currentHits = response.hits.length
+  currentHits = response.hits.length;
   try {
     if (response.totalHits === 0) {
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     } else {
       renderGallery(response.hits);
-      lightbox.refresh();
       Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
 
       if (response.totalHits > perPage) {
@@ -58,8 +58,24 @@ async function onLoadMore() {
   page += 1;
   const response = await fetchImages(searchQuery, page, perPage);
   renderGallery(response.hits);
-      lightbox.refresh();
+  lightbox.refresh();
+  const totalPages = Math.ceil(response.totalHits / perPage);
 
+  if (page >= totalPages) {
+    buttonUnHidden();
+        Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+   
+      }
+
+    // Цей код дозволяє автоматично прокручувати сторінку на висоту 2 карток галереї, коли вона завантажується
+    const { height: cardHeight } = document.querySelector('.gallery')
+        .firstElementChild.getBoundingClientRect();
+    window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+    })
+  
+  
 }
 
 
