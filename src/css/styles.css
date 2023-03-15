@@ -2,6 +2,7 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
 .search-form {
@@ -9,8 +10,8 @@ img {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 50px;
+    
 }
 
 input {
@@ -80,25 +81,12 @@ input {
     justify-content: center;
 }
 
-/* .gallery-container {
+.container {
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 25px;
 
-    @media screen and (min-width: 480px) {
-        width: 480px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    @media screen and (min-width: 768px) {
-        width: 768px;
-    }
-
-    @media screen and (min-width: 1440px) {
-        width: 1440px;
-    }
-} */
+}
 
 .gallery,
 .info {
@@ -108,20 +96,18 @@ input {
 }
 
 .gallery {
-    margin-left: -20px;
-    padding-top: 60px;
+   gap: 15px;
+    margin-bottom: 60px;
+    margin-top: 60px;
     justify-content: center;
 }
 
 .gallery__link {
-    margin-top: 20px;
-    margin-left: 20px;
     min-width: 200px;
     flex-basis: calc((100% - 80px) / 4);
     border: 2px solid rgb(241, 238, 238);
     border-radius: 10px;
     overflow: hidden;
-    transition: all 0.3s;
     text-decoration: none;
     transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
