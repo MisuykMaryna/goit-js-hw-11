@@ -29,7 +29,6 @@ async function onSearch(e) {
   searchQuery = e.currentTarget.elements.searchQuery.value.trim();
   page = 1;
   buttonHidden();
-  lightbox.refresh();
   clearAll();
   if (searchQuery === '') {
     return;
